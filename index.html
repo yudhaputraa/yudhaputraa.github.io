@@ -1,196 +1,451 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yudha Putra | Loading...</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body { 
-            font-family: 'Courier New', Courier, monospace; 
-            background-color: #EBE7EE; 
-            overflow: hidden; 
-        }
-
-        /* --- LOGO (KIRI ATAS) --- */
-        .header-ui {
-            position: fixed;
-            top: 30px;
-            left: 40px;
-            z-index: 10005; 
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 2px;
-            color: #1a1a1a;
-            pointer-events: none;
-        }
-
-        .logo {
-            font-size: 1.1rem;
-            border: 2px solid #1a1a1a;
-            padding: 5px 15px;
-            display: inline-block;
-        }
-
-        /* --- PRELOADER SECTION --- */
-        #preloader {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: #EBE7EE;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .marquee-container {
-            position: absolute;
-            width: 100vw;
-            overflow: hidden;
-            white-space: nowrap;
-            pointer-events: none;
-            display: flex;
-        }
-
-        .marquee-text {
-            display: inline-block;
-            font-size: 5vw;
-            font-weight: 900;
-            color: rgba(0,0,0,0.08); 
-            text-transform: uppercase;
-            animation: moveLeft 35s linear infinite;
-            padding-right: 50px;
-        }
-
-        @keyframes moveLeft {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-
-        /* Kapsul Loading */
-        .loading-capsule {
-            position: relative;
-            background: #000;
-            color: #fff;
-            width: 340px;
-            height: 75px;
-            border-radius: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            transition: 
-                width 0.5s cubic-bezier(0.65, 0, 0.35, 1), 
-                height 0.5s cubic-bezier(0.65, 0, 0.35, 1), 
-                border-radius 0.4s ease;
-        }
-
-        .loading-capsule.stretch-width {
-            width: 100vw;
-            border-radius: 0;
-        }
-
-        .loading-capsule.full-screen {
-            height: 100vh;
-        }
-
-        .loader-content {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: opacity 0.2s ease;
-        }
-
-        .status-label {
-            font-size: 1rem;
-            letter-spacing: 3px;
-            font-weight: bold;
-        }
-
-        .cursor {
-            width: 10px;
-            height: 18px;
-            background-color: #fff;
-            margin-left: 5px;
-            animation: blink 0.6s infinite;
-        }
-
-        @keyframes blink { 50% { opacity: 0; } }
-    </style>
+    <title>Yudha Putra | AI Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-    <div class="header-ui" id="header-ui">
-        <div class="logo">Yudha Putra</div>
+    <nav>
+        <a href="#" class="logo">Yudha Putra</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experienceSection">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="menu-icon" id="menuToggle"><i class="fa-solid fa-bars-staggered"></i></div>
+    </nav>
+
+    <div class="mobile-overlay" id="mobileMenu">
+        <a href="#" onclick="toggleMenu()">About</a>
+        <a href="#experienceSection" onclick="toggleMenu()">Work</a>
+        <a href="#contact" onclick="toggleMenu()">Contact</a>
     </div>
 
-    <div id="preloader">
-        <div class="marquee-container">
-            <div class="marquee-text">
-                AI Engineer, Mahasiswa UNTAG Berprestasi — AI Engineer, Mahasiswa UNTAG Berprestasi — AI Engineer, Mahasiswa UNTAG Berprestasi — AI Engineer, Mahasiswa UNTAG Berprestasi —
-            </div>
+    <div class="viewport">
+        <div class="hero-title" id="heroTitle">
+            <p style="color: #888; letter-spacing: 3px; font-size: 0.9rem;">Hey, I'm Yudha 👋</p>
+            <h1>AI Engineer</h1>
         </div>
 
-        <div class="loading-capsule" id="capsule">
-            <div class="loader-content" id="loader-content">
-                <div class="status-label" id="status-label">LOADING</div>
-                <span id="counter-text">0%</span>
-                <div class="cursor"></div>
+        <div class="avatar-container" id="avatarContainer">
+            <img src="img/meme.png" alt="Avatar" class="avatar-image">
+        </div>
+
+        <div class="search-box" id="searchBox">
+            <input type="text" placeholder="Ask me anything...">
+            <button class="search-btn">➔</button>
+        </div>
+
+        <div class="about-section" id="aboutSection">
+            <div class="about-header">
+                <h1 style="color: #c2a4ff; text-transform: uppercase; letter-spacing: 4px;">About Me</h1>
+            </div>
+            <p>Saya adalah seorang peneliti di bidang Informatika/Ilmu Komputer dengan fokus spesialisasi pada Medical Image Processing dan Deep Learning. Saat ini, saya sedang menuntaskan riset mengenai segmentasi aneurisma intrakranial menggunakan arsitektur 3D U-Net. Saya memiliki ketertarikan mendalam dalam mentransformasi data medis yang kompleks menjadi solusi diagnostik yang akurat melalui teknik pengolahan citra tingkat lanjut.</p>
+            <div class="skills-grid">
+                <div class="skill-tag">3D U-Net</div>
+                <div class="skill-tag">Deep Learning</div>
+                <div class="skill-tag">LLM</div>
+                <div class="skill-tag">PyTorch</div>
             </div>
         </div>
     </div>
+
+    <div class="experience-section" id="experienceSection">
+        <h1 style="color: #c2a4ff; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 60px; text-align: center; width: 100%;">My Career & <br>Experience</h1>
+
+        <div class="timeline-container">
+            <div class="timeline-item">
+                <div class="time-left">
+                    <h3>Riset Deep Learning</h3>
+                    <span>Universitas 17 Agustus 1945 Surabaya</span>
+                </div>
+                <div class="time-center">
+                    <span class="year-display">NOW</span>
+                    <span class="year-display">-</span>
+                    <span class="year-display">Agustus 2025</span>
+                </div>
+                <div class="time-right">
+                    <p>Berpengalaman mengembangkan sistem AI end-to-end dan solusi berbasis Large Language Models (LLM) melalui teknik fine-tuning.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-left">
+                    <h3>AI Research Assistants</h3>
+                    <span>Swiss German University</span>
+                </div>
+                <div class="time-center">
+                    <span class="year-display">Agustus 2025</span>
+                    <span class="year-display">-</span>
+                    <span class="year-display">Januari 2024</span>
+                </div>
+                <div class="time-right">
+                    <p>Berpengalaman dalam mengembangkan sistem AI end-to-end serta solusi NLP berbasis integrasi transformer dan fine-tuning LLM. Ahli dalam merancang sistem Retrieval-Augmented Generation (RAG) menggunakan pencarian vektor untuk optimasi akurasi model.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-left">
+                    <h3>Petugas Pemeriksaan Lapangan</h3>
+                    <span>Badan Pusat Statistik Sidoarjo</span>
+                </div>
+                <div class="time-center">
+                    <span class="year-display">Oktober 2022</span>
+                    <span class="year-display">-</span>
+                    <span class="year-display">Agustus 2021</span>
+                </div>
+                <div class="time-right">
+                    <p>Berpengalaman sebagai pengawas lapangan yang mengoordinasikan tim serta memastikan validitas dan konsistensi data hasil input secara akurat. Terampil dalam merancang dan menerapkan alur pemeriksaan data yang sistematis guna menjaga kualitas informasi sebelum diproses lebih lanjut.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-left">
+                    <h3>Asisten Laboratorium Komputer</h3>
+                    <span>SMK Antartika 1 Sidoarjo</span>
+                </div>
+                <div class="time-center">
+                    <span class="year-display">Oktober 2020</span>
+                    <span class="year-display">-</span>
+                    <span class="year-display">April 2018</span>
+                </div>
+                <div class="time-right">
+                    <p>Berpengalaman dalam mengelola ratusan unit komputer serta memastikan stabilitas sistem melalui pemeliharaan rutin dan pembaruan konfigurasi laboratorium. Berperan sebagai pendukung teknis dalam membimbing siswa menguasai perangkat lunak dan dasar pemrograman untuk kelancaran proses pembelajaran.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-left">
+                    <h3>Asisten Laboratorium</h3>
+                    <span>PT. Ecco Tannery Indonesia</span>
+                </div>
+                <div class="time-center">
+                    <span class="year-display">Oktober 2019</span>
+                    <span class="year-display">-</span>
+                    <span class="year-display">Juli 2019</span>
+                </div>
+                <div class="time-right">
+                    <p>Berpengalaman mengelola dan memvalidasi lebih dari 200 entri data mingguan dengan akurasi tinggi menggunakan prosedur yang sistematis. Ahli dalam merancang metode validasi data yang mempercepat alur pemrosesan serta proaktif dalam mengidentifikasi kebutuhan operasional laboratorium.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="certification-section">
+            <h1 style="color: #c2a4ff; text-transform: uppercase; letter-spacing: 5px; margin: 100px 0 40px 0; text-align: center; width: 100%;">Certifications</h1>
+
+            <div class="cert-grid">
+
+                <a href="https://coursera.org/verify/7VGBX1M4VTXR" target="_blank" class="cert-card">
+                    <div class="cert-img"><img src="img/cert1.jpg" alt="Sertifikat"></div>
+                    <div class="cert-info">
+                        <span class="cert-date">April 2026</span>
+                        <h3>PyTorch: Fundamentals</h3>
+                        <p>Coursera - DeepLearning.AI</p>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1ri9UfAzms4G8sLlIgVTTG1u0i2kP-zry/view?usp=sharing" target="_blank" class="cert-card">
+                    <div class="cert-img"><img src="img/cer2.jpg" alt="Sertifikat"></div>
+                    <div class="cert-info">
+                        <span class="cert-date">April 2026</span>
+                        <h3>Introduction to LangGraph</h3>
+                        <p>LangChain Academy</p>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/file/d/144BMjrBY-62UuE7-4msQ4VPsFtMGOHdv/view?usp=sharing" target="_blank" class="cert-card">
+                    <div class="cert-img"><img src="img/cert3.jpg" alt="Sertifikat"></div>
+                    <div class="cert-info">
+                        <span class="cert-date">Januari 2023</span>
+                        <h3>Introduction to Al and Entrepreneurship</h3>
+                        <p>AI Campus Jerman</p>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/file/d/10FARbvX_zFp9LCx2FoMp2hRt-Ly-R-mB/view?usp=sharing" target="_blank" class="cert-card">
+                    <div class="cert-img"><img src="img/cert4.jpg" alt="Sertifikat"></div>
+                    <div class="cert-info">
+                        <span class="cert-date">Oktober 2023</span>
+                        <h3>The Power of Statistics</h3>
+                        <p>Google</p>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/file/d/125JKDglYGBhhCET0JlRjct2d9sj2-I42/view?usp=sharing" target="_blank" class="cert-card">
+                    <div class="cert-img"><img src="img/cert5.jpg" alt="Sertifikat"></div>
+                    <div class="cert-info">
+                        <span class="cert-date">September 2023</span>
+                        <h3>Fundamental Neuroscience for Neuroimaging</h3>
+                        <p>Johns Hopkins University</p>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1OhYthxp_NKaJNZ30NNVkG_-evVbyPTOu/view?usp=sharing" target="_blank" class="cert-card">
+                    <div class="cert-img"><img src="img/cert6.jpg" alt="Sertifikat"></div>
+                    <div class="cert-info">
+                        <span class="cert-date">September 2023</span>
+                        <h3>Translate Data into Insight</h3>
+                        <p>Google</p>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1cnskeVEcb45-ZSPSPQVzuWchYYHYGTz4/view?usp=sharing" target="_blank" class="cert-card">
+                    <div class="cert-img"><img src="img/cert7.jpg" alt="Sertifikat"></div>
+                    <div class="cert-info">
+                        <span class="cert-date">Agustus 2023</span>
+                        <h3>Foundations of Data Science</h3>
+                        <p>Google</p>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1E7pgQ_VNcwEVI9QaQWUqOn2UcwlEFUUS/view?usp=sharing" target="_blank" class="cert-card">
+                    <div class="cert-img"><img src="img/cert8.png" alt="Sertifikat"></div>
+                    <div class="cert-info">
+                        <span class="cert-date">April 2022</span>
+                        <h3>Learning Python</h3>
+                        <p>Linkedin Learning</p>
+                    </div>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1PwPJxQAKAmqLMiO-sAAGlWoaLgO0_PZY/view?usp=sharing" target="_blank" class="cert-card">
+                    <div class="cert-img"><img src="img/cert9.jpg" alt="Sertifikat"></div>
+                    <div class="cert-info">
+                        <span class="cert-date">Mei 2022</span>
+                        <h3>Programming for Everybody Python</h3>
+                        <p>Universitas Michigan</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="achievements-section" id="achievementsSection">
+        <h1 style="color: #c2a4ff; text-transform: uppercase; letter-spacing: 5px; margin: 100px 0 40px 0; text-align: center; width: 100%;">Prestasi</h1>
+
+        <div class="achievements-container">
+            <div class="achievements-image-box">
+                <img src="img/winning.jpeg" alt="Foto Penyerahan Penghargaan" class="winning-photo">
+                <div class="photo-overlay"></div>
+            </div>
+
+            <div class="achievements-list-box">
+                <ul class="achievement-list">
+                    <li class="achievement-item">
+                        <i class="fa-solid fa-award award-icon"></i>
+                        <div class="achievement-details">
+                            <h3>ISLAMIC ECONOMIC COMPETITION</h3>
+                            <p>Juara 2 - Universitas Brawijaya - Juni 2025</p>
+                        </div>
+                    </li>
+                    <li class="achievement-item">
+                        <i class="fa-solid fa-medal award-icon"></i>
+                        <div class="achievement-details">
+                            <h3>LKTI Prisma</h3>
+                            <p>Juara 1 - Universitas Mataram - Mei 2025</p>
+                        </div>
+                    </li>
+                    <li class="achievement-item">
+                        <i class="fa-solid fa-trophy award-icon"></i>
+                        <div class="achievement-details">
+                            <h3>Pekan Ilmiah Andalas</h3>
+                            <p>Peraih Medali Silver dan Penghargaan Presentasi Terbaik - Universitas Andalas - Mei 2025</p>
+                        </div>
+                    </li>
+                    <li class="achievement-item">
+                        <i class="fa-solid fa-certificate award-icon"></i>
+                        <div class="achievement-details">
+                            <h3>Lintas Ormawa</h3>
+                            <p>Juara 2 - Universitas Negeri Malang - November 2024</p>
+                        </div>
+                    </li>
+                    <li class="achievement-item">
+                        <i class="fa-solid fa-certificate award-icon"></i>
+                        <div class="achievement-details">
+                            <h3>Program Kreativitas Mahasiswa (PKM)</h3>
+                            <p>Pendanaan 8jt - Kemendikbudristek - Oktober 2024</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="tech-stack-section" id="techStackSection">
+        <h1 style="color: #c2a4ff; text-transform: uppercase; letter-spacing: 5px; margin: 100px 0 40px 0; text-align: center; width: 100%;">Tech Stack</h1>
+
+        <div class="tech-grid">
+            <a href="https://www.python.org" target="_blank" class="tech-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="Python"><span>Python</span></a>
+            <a href="https://www.w3schools.com/cpp/" target="_blank" class="tech-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="C++"><span>C++</span></a>
+
+            <a href="https://pytorch.org/" target="_blank" class="tech-card"><img src="https://www.vectorlogo.zone/logos/pytorch/pytorch-icon.svg" alt="PyTorch"><span>PyTorch</span></a>
+            <a href="https://www.tensorflow.org" target="_blank" class="tech-card"><img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg" alt="TensorFlow"><span>TensorFlow</span></a>
+            <a href="https://scikit-learn.org/" target="_blank" class="tech-card"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="Scikit-Learn"><span>Scikit-Learn</span></a>
+
+            <a href="https://pandas.pydata.org/" target="_blank" class="tech-card"><img src="https://raw.githubusercontent.com/devicons/devicon/2ae2a900d2f041da66e950e4d48052658d850630/icons/pandas/pandas-original.svg" alt="Pandas"><span>Pandas</span></a>
+            <a href="https://numpy.org/" target="_blank" class="tech-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/numpy/numpy-original.svg" alt="NumPy"><span>NumPy</span></a>
+
+            <a href="https://opencv.org/" target="_blank" class="tech-card"><img src="https://www.vectorlogo.zone/logos/opencv/opencv-icon.svg" alt="OpenCV"><span>OpenCV</span></a>
+            <a href="https://scikit-image.org/" target="_blank" class="tech-card"><img src="https://scikit-image.org/_static/img/logo.png" alt="scikit-image"><span>scikit-image</span></a>
+            <a href="https://monai.io/" target="_blank" class="tech-card"><img src="https://monai.io/assets/img/logo_monai_transparent.png" alt="MONAI"><span>MONAI</span></a>
+            <a href="https://huggingface.co/" target="_blank" class="tech-card"><img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face"><span>Hugging Face</span></a>
+            <a href="https://www.langchain.com/" target="_blank" class="tech-card"><img src="https://python.langchain.com/img/favicon.png" alt="LangChain"><span>LangChain</span></a>
+
+            <a href="https://fastapi.tiangolo.com/" target="_blank" class="tech-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/fastapi/fastapi-original.svg" alt="FastAPI"><span>FastAPI</span></a>
+            <a href="https://flask.palletsprojects.com/" target="_blank" class="tech-card"><img src="https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-icon.svg" alt="Flask"><span>Flask</span></a>
+
+            <a href="https://www.postgresql.org" target="_blank" class="tech-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="PostgreSQL"><span>PostgreSQL</span></a>
+            <a href="https://www.docker.com/" target="_blank" class="tech-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker"><span>Docker</span></a>
+        </div>
+    </div>
+
+    <div class="resume-fixed">
+        <a href="resume.pdf" download class="btn-resume">RESUME <i class="fa-regular fa-file-lines"></i></a>
+    </div>
+
+    <footer class="footer-section" id="contact">
+        <div class="footer-content">
+            <h2 class="footer-name">Yudha Putra Aprilianto</h2>
+
+            <div class="footer-contact-info">
+                <p><i class="fa-solid fa-location-dot"></i> Surabaya, Indonesia</p>
+                <p><i class="fa-solid fa-envelope"></i> <a href="mailto:yudhaputraaprilianto@gmail.com">yudhaputraaprilianto@gmail.com</a></p>
+            </div>
+
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/yudha-putra-aprilianto/" target="_blank" class="social-icon" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://github.com/yudhaputraa" target="_blank" class="social-icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.kaggle.com/yudhaputraaprilianto" target="_blank" class="social-icon" title="Kaggle"><i class="fa-brands fa-kaggle"></i></a>
+                <a href="https://www.instagram.com/dataismee/" target="_blank" class="social-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Yudha Putra Aprilianto. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     <script>
-        const counterText = document.getElementById('counter-text');
-        const statusLabel = document.getElementById('status-label');
-        const capsule = document.getElementById('capsule');
-        const loaderContent = document.getElementById('loader-content');
-        const headerUI = document.getElementById('header-ui');
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const avatarContainer = document.getElementById('avatarContainer');
+        const aboutSection = document.getElementById('aboutSection');
+        const heroTitle = document.getElementById('heroTitle');
+        const searchBox = document.getElementById('searchBox');
+        const experienceSection = document.getElementById('experienceSection');
+        const techStackSection = document.getElementById('techStackSection');
+        const achievementsSection = document.getElementById('achievementsSection');
 
-        let progress = 0;
-
-        const loadingInterval = setInterval(() => {
-            progress += Math.floor(Math.random() * 12) + 5; 
-            if (progress >= 100) {
-                progress = 100;
-                clearInterval(loadingInterval);
-                finishLoading();
-            }
-            counterText.innerText = progress + "%";
-        }, 40);
-
-        function finishLoading() {
-            setTimeout(() => {
-                // Efek hapus terminal
-                counterText.innerText = "";
-                statusLabel.innerText = "";
-
-                setTimeout(() => {
-                    statusLabel.innerText = "WELCOME";
-
-                    setTimeout(() => {
-                        loaderContent.style.opacity = "0";
-                        headerUI.style.transition = "opacity 0.3s";
-                        headerUI.style.opacity = "0";
-
-                        // Melebar horizontal
-                        capsule.classList.add('stretch-width');
-
-                        setTimeout(() => {
-                            // Melebar vertikal full layar
-                            capsule.classList.add('full-screen');
-
-                            setTimeout(() => {
-                                // PINDAH KE HALAMAN INDEX1.HTML
-                                window.location.href = "index1.html";
-                            }, 600); // Jeda sedikit agar layar benar-benar hitam sebelum pindah
-                        }, 500);
-                    }, 800);
-                }, 400);
-            }, 200);
+        // Fungsi buka/tutup menu mobile
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
         }
+        menuToggle.addEventListener('click', toggleMenu);
+
+        // Fungsi Animasi Scroll HANYA UNTUK DESKTOP
+        window.addEventListener('scroll', () => {
+            if (window.innerWidth > 900) {
+                let scrollVal = window.scrollY;
+                let windowHeight = window.innerHeight;
+
+                // 1. Hero & Search Fade Out
+                let heroOpacity = Math.max(1 - (scrollVal / 350), 0);
+                heroTitle.style.opacity = heroOpacity;
+                searchBox.style.opacity = heroOpacity;
+                heroTitle.style.visibility = heroOpacity === 0 ? 'hidden' : 'visible';
+                searchBox.style.visibility = heroOpacity === 0 ? 'hidden' : 'visible';
+
+                // 2. Avatar Shift
+                if (avatarContainer) {
+                    let progress1 = Math.min(scrollVal / windowHeight, 1);
+                    avatarContainer.style.left = `${50 - (progress1 * 30)}%`;
+                    let avatarOpacity = scrollVal > windowHeight * 0.7 ? 0 : 1;
+                    avatarContainer.style.opacity = avatarOpacity;
+                    avatarContainer.style.visibility = avatarOpacity === 0 ? 'hidden' : 'visible';
+                }
+
+                // 3. ABOUT SECTION LOGIC
+                let aboutInTrigger = windowHeight * 0.15;
+                let aboutOutTrigger = windowHeight * 0.45;
+                let aboutFadeDuration = 300;
+                let aboutOpacity = 0;
+                let aboutY = 50;
+
+                if (scrollVal > aboutInTrigger && scrollVal <= aboutOutTrigger) {
+                    aboutOpacity = Math.min((scrollVal - aboutInTrigger) / 300, 1);
+                    aboutY = 50 - (aboutOpacity * 50);
+                } else if (scrollVal > aboutOutTrigger) {
+                    aboutOpacity = Math.max(1 - ((scrollVal - aboutOutTrigger) / aboutFadeDuration), 0);
+                    aboutY = -((1 - aboutOpacity) * 50);
+                }
+
+                aboutSection.style.opacity = aboutOpacity;
+                aboutSection.style.transform = `translateY(${aboutY}px)`;
+
+                if (aboutOpacity <= 0) {
+                    aboutSection.style.visibility = 'hidden';
+                    aboutSection.style.pointerEvents = 'none';
+                } else {
+                    aboutSection.style.visibility = 'visible';
+                    aboutSection.style.pointerEvents = 'auto';
+                }
+
+                // 4. EXPERIENCE SECTION LOGIC
+                let expTrigger = aboutOutTrigger + 150;
+                let expProgress = Math.max((scrollVal - expTrigger) / 150, 0);
+                let finalExpOpacity = Math.min(expProgress, 1);
+
+                experienceSection.style.opacity = finalExpOpacity;
+                experienceSection.style.transform = `translateY(${50 - (finalExpOpacity * 50)}px)`;
+
+                if (finalExpOpacity <= 0) {
+                    experienceSection.style.visibility = 'hidden';
+                    experienceSection.style.pointerEvents = 'none';
+                } else {
+                    experienceSection.style.visibility = 'visible';
+                    experienceSection.style.pointerEvents = 'auto';
+                }
+
+                // 5. ACHIEVEMENTS SECTION LOGIC
+                let achieveTrigger = windowHeight * 1.5;
+                let achieveProgress = Math.max((scrollVal - achieveTrigger) / 150, 0);
+                let finalAchieveOpacity = Math.min(achieveProgress, 1);
+
+                achievementsSection.style.opacity = finalAchieveOpacity;
+                achievementsSection.style.transform = `translateY(${50 - (finalAchieveOpacity * 50)}px)`;
+
+                if (finalAchieveOpacity <= 0) {
+                    achievementsSection.style.visibility = 'hidden';
+                    achievementsSection.style.pointerEvents = 'none';
+                } else {
+                    achievementsSection.style.visibility = 'visible';
+                    achievementsSection.style.pointerEvents = 'auto';
+                }
+
+                // 6. TECH STACK SECTION LOGIC
+                let techTrigger = scrollVal - (windowHeight * 1.5);
+                let techProgress = Math.max((scrollVal - 1600) / 150, 0);
+                let finalTechOpacity = Math.min(techProgress, 1);
+
+                techStackSection.style.opacity = finalTechOpacity;
+                techStackSection.style.transform = `translateY(${50 - (finalTechOpacity * 50)}px)`;
+
+                if (finalTechOpacity <= 0) {
+                    techStackSection.style.visibility = 'hidden';
+                    techStackSection.style.pointerEvents = 'none';
+                } else {
+                    techStackSection.style.visibility = 'visible';
+                    techStackSection.style.pointerEvents = 'auto';
+                }
+            }
+        });
     </script>
 </body>
+
 </html>
