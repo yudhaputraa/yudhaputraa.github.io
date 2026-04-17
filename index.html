@@ -1,31 +1,196 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="img/flowers.png" type="image/x-icon">
-    <title>Flowers</title>
+    <title>Yudha Putra | Loading...</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Courier New', Courier, monospace; 
+            background-color: #EBE7EE; 
+            overflow: hidden; 
+        }
+
+        /* --- LOGO (KIRI ATAS) --- */
+        .header-ui {
+            position: fixed;
+            top: 30px;
+            left: 40px;
+            z-index: 10005; 
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #1a1a1a;
+            pointer-events: none;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            border: 2px solid #1a1a1a;
+            padding: 5px 15px;
+            display: inline-block;
+        }
+
+        /* --- PRELOADER SECTION --- */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: #EBE7EE;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .marquee-container {
+            position: absolute;
+            width: 100vw;
+            overflow: hidden;
+            white-space: nowrap;
+            pointer-events: none;
+            display: flex;
+        }
+
+        .marquee-text {
+            display: inline-block;
+            font-size: 5vw;
+            font-weight: 900;
+            color: rgba(0,0,0,0.08); 
+            text-transform: uppercase;
+            animation: moveLeft 35s linear infinite;
+            padding-right: 50px;
+        }
+
+        @keyframes moveLeft {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* Kapsul Loading */
+        .loading-capsule {
+            position: relative;
+            background: #000;
+            color: #fff;
+            width: 340px;
+            height: 75px;
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: 
+                width 0.5s cubic-bezier(0.65, 0, 0.35, 1), 
+                height 0.5s cubic-bezier(0.65, 0, 0.35, 1), 
+                border-radius 0.4s ease;
+        }
+
+        .loading-capsule.stretch-width {
+            width: 100vw;
+            border-radius: 0;
+        }
+
+        .loading-capsule.full-screen {
+            height: 100vh;
+        }
+
+        .loader-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: opacity 0.2s ease;
+        }
+
+        .status-label {
+            font-size: 1rem;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        .cursor {
+            width: 10px;
+            height: 18px;
+            background-color: #fff;
+            margin-left: 5px;
+            animation: blink 0.6s infinite;
+        }
+
+        @keyframes blink { 50% { opacity: 0; } }
+    </style>
 </head>
 <body>
-    <div class="greetings">
-    <!-- silahkan menambah kata sesuai keinginan dengan <span>text...</span -->
-        <!-- <span>HAPPY</span>
-        <span>BIRTHDAY</span> -->
+
+    <div class="header-ui" id="header-ui">
+        <div class="logo">Yudha Putra</div>
     </div>
-    <div class="greetings">
-        <span style="font-size: 30px;">Semoga Tizka Tidak cerewet seperti kata Feriona Dan Terimakasih Telah Membatu saya di divisi Penerbit.</span>
+
+    <div id="preloader">
+        <div class="marquee-container">
+            <div class="marquee-text">
+                AI Engineer, Mahasiswa UNTAG Berprestasi — AI Engineer, Mahasiswa UNTAG Berprestasi — AI Engineer, Mahasiswa UNTAG Berprestasi — AI Engineer, Mahasiswa UNTAG Berprestasi —
+            </div>
+        </div>
+
+        <div class="loading-capsule" id="capsule">
+            <div class="loader-content" id="loader-content">
+                <div class="status-label" id="status-label">LOADING</div>
+                <span id="counter-text">0%</span>
+                <div class="cursor"></div>
+            </div>
+        </div>
     </div>
-    <div class="description">
-    </div>
-    <div class="description">
-        <span>Maaf ya cuma kasih ini aja</span>
-    </div>
-    <div class="button">
-        <button>
-            <a href="flower.html">Klik disini</a>
-        </button>
-    </div>
+
+    <script>
+        const counterText = document.getElementById('counter-text');
+        const statusLabel = document.getElementById('status-label');
+        const capsule = document.getElementById('capsule');
+        const loaderContent = document.getElementById('loader-content');
+        const headerUI = document.getElementById('header-ui');
+
+        let progress = 0;
+
+        const loadingInterval = setInterval(() => {
+            progress += Math.floor(Math.random() * 12) + 5; 
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(loadingInterval);
+                finishLoading();
+            }
+            counterText.innerText = progress + "%";
+        }, 40);
+
+        function finishLoading() {
+            setTimeout(() => {
+                // Efek hapus terminal
+                counterText.innerText = "";
+                statusLabel.innerText = "";
+
+                setTimeout(() => {
+                    statusLabel.innerText = "WELCOME";
+
+                    setTimeout(() => {
+                        loaderContent.style.opacity = "0";
+                        headerUI.style.transition = "opacity 0.3s";
+                        headerUI.style.opacity = "0";
+
+                        // Melebar horizontal
+                        capsule.classList.add('stretch-width');
+
+                        setTimeout(() => {
+                            // Melebar vertikal full layar
+                            capsule.classList.add('full-screen');
+
+                            setTimeout(() => {
+                                // PINDAH KE HALAMAN INDEX1.HTML
+                                window.location.href = "index1.html";
+                            }, 600); // Jeda sedikit agar layar benar-benar hitam sebelum pindah
+                        }, 500);
+                    }, 800);
+                }, 400);
+            }, 200);
+        }
+    </script>
 </body>
 </html>
