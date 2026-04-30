@@ -15,7 +15,7 @@
         <a href="#" class="logo">Yudha Putra</a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
-            <li><a href="#experienceSection">Work</a></li>
+            <li><a href="#prestasi">Prestasi</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="menu-icon" id="menuToggle"><i class="fa-solid fa-bars-staggered"></i></div>
@@ -23,13 +23,13 @@
 
     <div class="mobile-overlay" id="mobileMenu">
         <a href="#" onclick="toggleMenu()">About</a>
-        <a href="#experienceSection" onclick="toggleMenu()">Work</a>
+        <a href="#prestasi" onclick="toggleMenu()">Prestasi</a>
         <a href="#contact" onclick="toggleMenu()">Contact</a>
     </div>
 
     <div class="viewport">
         <div class="hero-title" id="heroTitle">
-            <p style="color: #888; letter-spacing: 3px; font-size: 0.9rem;">Hey, I'm Yudha 👋</p>
+            <p style="color: #888; letter-spacing: 3px; font-size: 0.9rem;">Hey, Saya Yudha 👋</p>
             <h1>AI Engineer</h1>
         </div>
 
@@ -37,10 +37,9 @@
             <img src="img/meme.png" alt="Avatar" class="avatar-image">
         </div>
 
-        <div class="search-box" id="searchBox">
-            <input type="text" placeholder="Ask me anything...">
-            <button class="search-btn">➔</button>
-        </div>
+<div class="search-box" id="searchBox"> <input type="text" id="initialQuery" placeholder="Ask me anything...">
+    <button class="search-btn" onclick="goToChat()">➔</button>
+</div>
 
         <div class="about-section" id="aboutSection">
             <div class="about-header">
@@ -66,7 +65,7 @@
                     <span>Universitas 17 Agustus 1945 Surabaya</span>
                 </div>
                 <div class="time-center">
-                    <span class="year-display">NOW</span>
+                    <span class="year-display">Sekarang</span>
                     <span class="year-display">-</span>
                     <span class="year-display">Agustus 2025</span>
                 </div>
@@ -137,7 +136,7 @@
 
         </div>
 
-        <div class="certification-section">
+<div class="certification-section">
             <h1 style="color: #c2a4ff; text-transform: uppercase; letter-spacing: 5px; margin: 100px 0 40px 0; text-align: center; width: 100%;">Certifications</h1>
 
             <div class="cert-grid">
@@ -169,65 +168,17 @@
                     </div>
                 </a>
 
-                <a href="https://drive.google.com/file/d/10FARbvX_zFp9LCx2FoMp2hRt-Ly-R-mB/view?usp=sharing" target="_blank" class="cert-card">
-                    <div class="cert-img"><img src="img/cert4.jpg" alt="Sertifikat"></div>
-                    <div class="cert-info">
-                        <span class="cert-date">Oktober 2023</span>
-                        <h3>The Power of Statistics</h3>
-                        <p>Google</p>
-                    </div>
-                </a>
-
-                <a href="https://drive.google.com/file/d/125JKDglYGBhhCET0JlRjct2d9sj2-I42/view?usp=sharing" target="_blank" class="cert-card">
-                    <div class="cert-img"><img src="img/cert5.jpg" alt="Sertifikat"></div>
-                    <div class="cert-info">
-                        <span class="cert-date">September 2023</span>
-                        <h3>Fundamental Neuroscience for Neuroimaging</h3>
-                        <p>Johns Hopkins University</p>
-                    </div>
-                </a>
-
-                <a href="https://drive.google.com/file/d/1OhYthxp_NKaJNZ30NNVkG_-evVbyPTOu/view?usp=sharing" target="_blank" class="cert-card">
-                    <div class="cert-img"><img src="img/cert6.jpg" alt="Sertifikat"></div>
-                    <div class="cert-info">
-                        <span class="cert-date">September 2023</span>
-                        <h3>Translate Data into Insight</h3>
-                        <p>Google</p>
-                    </div>
-                </a>
-
-                <a href="https://drive.google.com/file/d/1cnskeVEcb45-ZSPSPQVzuWchYYHYGTz4/view?usp=sharing" target="_blank" class="cert-card">
-                    <div class="cert-img"><img src="img/cert7.jpg" alt="Sertifikat"></div>
-                    <div class="cert-info">
-                        <span class="cert-date">Agustus 2023</span>
-                        <h3>Foundations of Data Science</h3>
-                        <p>Google</p>
-                    </div>
-                </a>
-
-                <a href="https://drive.google.com/file/d/1E7pgQ_VNcwEVI9QaQWUqOn2UcwlEFUUS/view?usp=sharing" target="_blank" class="cert-card">
-                    <div class="cert-img"><img src="img/cert8.png" alt="Sertifikat"></div>
-                    <div class="cert-info">
-                        <span class="cert-date">April 2022</span>
-                        <h3>Learning Python</h3>
-                        <p>Linkedin Learning</p>
-                    </div>
-                </a>
-
-                <a href="https://drive.google.com/file/d/1PwPJxQAKAmqLMiO-sAAGlWoaLgO0_PZY/view?usp=sharing" target="_blank" class="cert-card">
-                    <div class="cert-img"><img src="img/cert9.jpg" alt="Sertifikat"></div>
-                    <div class="cert-info">
-                        <span class="cert-date">Mei 2022</span>
-                        <h3>Programming for Everybody Python</h3>
-                        <p>Universitas Michigan</p>
-                    </div>
-                </a>
-
             </div>
+
+            <div class="view-all-container">
+                <a href="tampil_sertifikat.html" class="btn-view-all">Lihat Semua Sertifikat <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
         </div>
     </div>
 
     <div class="achievements-section" id="achievementsSection">
+        <div id="prestasi"></div>
         <h1 style="color: #c2a4ff; text-transform: uppercase; letter-spacing: 5px; margin: 100px 0 40px 0; text-align: center; width: 100%;">Prestasi</h1>
 
         <div class="achievements-container">
@@ -249,7 +200,7 @@
                         <i class="fa-solid fa-medal award-icon"></i>
                         <div class="achievement-details">
                             <h3>LKTI Prisma</h3>
-                            <p>Juara 1 - Universitas Mataram - Mei 2025</p>
+                            <p>Harapan Juara 1 - Universitas Mataram - Mei 2025</p>
                         </div>
                     </li>
                     <li class="achievement-item">
@@ -294,12 +245,9 @@
 
             <a href="https://opencv.org/" target="_blank" class="tech-card"><img src="https://www.vectorlogo.zone/logos/opencv/opencv-icon.svg" alt="OpenCV"><span>OpenCV</span></a>
             <a href="https://scikit-image.org/" target="_blank" class="tech-card"><img src="https://scikit-image.org/_static/img/logo.png" alt="scikit-image"><span>scikit-image</span></a>
-            <a href="https://monai.io/" target="_blank" class="tech-card"><img src="https://monai.io/assets/img/logo_monai_transparent.png" alt="MONAI"><span>MONAI</span></a>
             <a href="https://huggingface.co/" target="_blank" class="tech-card"><img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face"><span>Hugging Face</span></a>
-            <a href="https://www.langchain.com/" target="_blank" class="tech-card"><img src="https://python.langchain.com/img/favicon.png" alt="LangChain"><span>LangChain</span></a>
 
             <a href="https://fastapi.tiangolo.com/" target="_blank" class="tech-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/fastapi/fastapi-original.svg" alt="FastAPI"><span>FastAPI</span></a>
-            <a href="https://flask.palletsprojects.com/" target="_blank" class="tech-card"><img src="https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-icon.svg" alt="Flask"><span>Flask</span></a>
 
             <a href="https://www.postgresql.org" target="_blank" class="tech-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="PostgreSQL"><span>PostgreSQL</span></a>
             <a href="https://www.docker.com/" target="_blank" class="tech-card"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg" alt="Docker"><span>Docker</span></a>
@@ -342,26 +290,35 @@
         const techStackSection = document.getElementById('techStackSection');
         const achievementsSection = document.getElementById('achievementsSection');
 
-        // Fungsi buka/tutup menu mobile
+function goToChat() {
+    const q = document.getElementById('initialQuery').value;
+    
+    // Jika input tidak kosong, bawa pertanyaannya ke URL
+    if (q.trim() !== "") {
+        // encodeURIComponent berguna agar spasi atau simbol aman di dalam URL
+        window.location.href = "/chat_page?pertanyaan=" + encodeURIComponent(q);
+    } else {
+        // Jika kosong, langsung pindah saja
+        window.location.href = "/chat_page";
+    }
+}
+
         function toggleMenu() {
             mobileMenu.classList.toggle('active');
         }
         menuToggle.addEventListener('click', toggleMenu);
 
-        // Fungsi Animasi Scroll HANYA UNTUK DESKTOP
         window.addEventListener('scroll', () => {
             if (window.innerWidth > 900) {
                 let scrollVal = window.scrollY;
                 let windowHeight = window.innerHeight;
 
-                // 1. Hero & Search Fade Out
                 let heroOpacity = Math.max(1 - (scrollVal / 350), 0);
                 heroTitle.style.opacity = heroOpacity;
                 searchBox.style.opacity = heroOpacity;
                 heroTitle.style.visibility = heroOpacity === 0 ? 'hidden' : 'visible';
                 searchBox.style.visibility = heroOpacity === 0 ? 'hidden' : 'visible';
 
-                // 2. Avatar Shift
                 if (avatarContainer) {
                     let progress1 = Math.min(scrollVal / windowHeight, 1);
                     avatarContainer.style.left = `${50 - (progress1 * 30)}%`;
@@ -370,7 +327,6 @@
                     avatarContainer.style.visibility = avatarOpacity === 0 ? 'hidden' : 'visible';
                 }
 
-                // 3. ABOUT SECTION LOGIC
                 let aboutInTrigger = windowHeight * 0.15;
                 let aboutOutTrigger = windowHeight * 0.45;
                 let aboutFadeDuration = 300;
@@ -396,7 +352,6 @@
                     aboutSection.style.pointerEvents = 'auto';
                 }
 
-                // 4. EXPERIENCE SECTION LOGIC
                 let expTrigger = aboutOutTrigger + 150;
                 let expProgress = Math.max((scrollVal - expTrigger) / 150, 0);
                 let finalExpOpacity = Math.min(expProgress, 1);
@@ -412,7 +367,6 @@
                     experienceSection.style.pointerEvents = 'auto';
                 }
 
-                // 5. ACHIEVEMENTS SECTION LOGIC
                 let achieveTrigger = windowHeight * 1.5;
                 let achieveProgress = Math.max((scrollVal - achieveTrigger) / 150, 0);
                 let finalAchieveOpacity = Math.min(achieveProgress, 1);
@@ -428,7 +382,6 @@
                     achievementsSection.style.pointerEvents = 'auto';
                 }
 
-                // 6. TECH STACK SECTION LOGIC
                 let techTrigger = scrollVal - (windowHeight * 1.5);
                 let techProgress = Math.max((scrollVal - 1600) / 150, 0);
                 let finalTechOpacity = Math.min(techProgress, 1);
